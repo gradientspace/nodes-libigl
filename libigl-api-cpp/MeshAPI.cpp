@@ -68,19 +68,34 @@ int libigl_query_mesh(
 	int* triangle_buffer)
 {
 	iglmesh* mesh = (iglmesh*)meshHandle;
-	int NumTris = (int)mesh->Triangles.rows() * 3;
-	int NumVerts = (int)mesh->Vertices.rows() * 3;
-	if (triangle_buffer_size < NumTris ||
-		vertex_buffer_size < NumVerts)
+	int NumTris = (int)mesh->Triangles.rows();
+	int NumVerts = (int)mesh->Vertices.rows();
+	if (triangle_buffer_size < (NumTris*3) ||
+		vertex_buffer_size < (NumVerts*3))
 		return 0;
 
 	// it's possible this is not doing things in the right order...
 
+	int i = 0;
 	for (int vi = 0; vi < NumVerts; ++vi)
-		vertex_buffer[vi] = mesh->Vertices(vi);
-
+	{
+		vertex_buffer[i++] = mesh->Vertices(vi, 0);
+		vertex_buffer[i++] = mesh->Vertices(vi, 1);
+		vertex_buffer[i++] = mesh->Vertices(vi, 2);
+	}
+	i = 0;
 	for (int ti = 0; ti < NumTris; ++ti)
-		triangle_buffer[ti] = mesh->Triangles(ti);
+	{
+		triangle_buffer[i++] = mesh->Triangles(ti, 0);
+		triangle_buffer[i++] = mesh->Triangles(ti, 1);
+		triangle_buffer[i++] = mesh->Triangles(ti, 2);
+	}
+	// doesn't work, row/col is backwards somehow
+	//NumVerts *= 3; NumTris *= 3;
+	//for (int vi = 0; vi < NumVerts; ++vi)
+	//	vertex_buffer[vi] = mesh->Vertices(vi);
+	//for (int ti = 0; ti < NumTris; ++ti)
+	//	triangle_buffer[ti] = mesh->Triangles(ti);
 
 	return 1;
 }

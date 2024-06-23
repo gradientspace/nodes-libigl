@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LibIGLNodes\LibIGLNodes.csproj" />
     <ProjectReference Include="..\LibIGLSharp\LibIGLSharp.csproj" />
   </ItemGroup>
 

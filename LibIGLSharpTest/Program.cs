@@ -1,4 +1,5 @@
-﻿using LibIGLSharp;
+﻿using LibIGLNodes;
+using LibIGLSharp;
 using System.Diagnostics;
 
 
@@ -35,8 +36,9 @@ Debug.Assert(meshHandle.IsValid);
 
 double[] NewVertices; int[] NewTriangles;
 MeshFunctions.GetMeshCopy(meshHandle, out NewVertices, out NewTriangles);
-System.Console.WriteLine("NewVertices {0}  Newtriangles {1}", NewVertices.Length, NewTriangles.Length);
+System.Diagnostics.Debug.WriteLine("NewVertices {0}  Newtriangles {1}", NewVertices.Length, NewTriangles.Length);
 
-MeshFunctions.FreeMesh(ref meshHandle);
+LibIGLMeshFunctionLibrary.IGLFreeMesh(meshHandle);
+//MeshFunctions.FreeMesh(ref meshHandle);
 
 
