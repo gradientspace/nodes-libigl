@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Company>Gradientspace Corp</Company>
+    <Authors>Ryan Schmidt</Authors>	
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(SolutionDir)\x64\$(Configuration)\*.* $(OutDir)" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\libigl-api-cpp\libigl-api-cpp.vcxproj" />
+  </ItemGroup>
+  
+  
+  
+<!--- this block was hand-created and will result in the Cpp DLL being copied along with the C# dll -->
+<!--- it shows up in the solution explorer as a "build action", properties can be edited there, so maybe there is a way from the UI -->
+<!--- Possibly means that PostBuildEvent above is not necessary... -->
+<ItemGroup Condition="'$(Configuration)'=='Release'">
+	<Content Include="$(SolutionDir)\x64\$(Configuration)\libigl-api-cpp.dll">
+		<Link>libigl-api-cpp.dll</Link>
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+</ItemGroup>
+<ItemGroup Condition="'$(Configuration)'=='Debug'">
+	<Content Include="$(SolutionDir)\x64\$(Configuration)\libigl-api-cpp.dll">
+		<Link>libigl-api-cpp.dll</Link>
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+</ItemGroup>	  
+  
+
+</Project>

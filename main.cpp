@@ -1,4 +1,5 @@
 #include <igl/opengl/glfw/Viewer.h>
+#include <igl/loop.h>
 
 int main(int argc, char *argv[])
 {
@@ -26,9 +27,13 @@ int main(int argc, char *argv[])
     1,5,7,
     1,7,3).finished();
 
+  Eigen::MatrixXd SV;
+  Eigen::MatrixXi SF;
+  igl::loop(V, F, SV, SF, 1);
+
   // Plot the mesh
   igl::opengl::glfw::Viewer viewer;
-  viewer.data().set_mesh(V, F);
+  viewer.data().set_mesh(SV, SF);
   viewer.data().set_face_based(true);
   viewer.launch();
 }
