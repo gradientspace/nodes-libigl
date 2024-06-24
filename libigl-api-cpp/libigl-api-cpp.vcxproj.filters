@@ -21,7 +21,7 @@
     <ClInclude Include="igl_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OperatorAPI.h">
+    <ClInclude Include="RemeshingAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BaseAPI.h">
@@ -38,7 +38,7 @@
     <ClCompile Include="MeshAPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OperatorAPI.cpp">
+    <ClCompile Include="RemeshingAPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

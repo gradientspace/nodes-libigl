@@ -146,13 +146,13 @@
     <ClInclude Include="BaseAPI.h" />
     <ClInclude Include="igl_types.h" />
     <ClInclude Include="MeshAPI.h" />
-    <ClInclude Include="OperatorAPI.h" />
+    <ClInclude Include="RemeshingAPI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="build_test.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="MeshAPI.cpp" />
-    <ClCompile Include="OperatorAPI.cpp" />
+    <ClCompile Include="RemeshingAPI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

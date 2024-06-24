@@ -11,6 +11,16 @@ namespace LibIGLSharp
         public bool IsValid { get { return handle != IntPtr.Zero; } }
     }
 
+    public struct IGLMeshInfo
+    {
+        public int VertexCount = 0;
+        public int FaceCount = 0;
+        public IGLMeshInfo() { }
+        public IGLMeshInfo(int vertexCount, int faceCount) { VertexCount = vertexCount; FaceCount = faceCount; }
+        internal IGLMeshInfo(in IGLMeshAPI.mesh_info mi) { VertexCount = mi.VertexCount; FaceCount = mi.FaceCount; }
+    }
+
+
     public sealed class MeshFunctions
     {
         private MeshFunctions() { }
@@ -57,8 +67,6 @@ namespace LibIGLSharp
 
     internal sealed partial class IGLMeshAPI
     {
-        // https://learn.microsoft.com/en-us/dotnet/standard/native-interop/pinvoke-source-generation
-
         // this only works if the dll has already been loaded using NativeLibrary.Load(), or
         // if it's in the standard search paths
         const string CPPLibraryPath = LibIGLSharp.CppDLLName;
